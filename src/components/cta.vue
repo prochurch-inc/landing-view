@@ -7,6 +7,7 @@
         <special-button
             :main-text="ctaButtonText"
             :sub-text="ctaButtonSubtext"
+            :on-click="showForm"
         />
     </section>
 </template>
@@ -23,7 +24,7 @@
                     if(this.ctaImage.includes('http')){
                         return this.ctaImage;
                     }else{
-                        return `/storage/${this.ctaImage}`;
+                        return `${this.parent}/storage/${this.ctaImage}`;
                     }
                 }
             },
@@ -54,8 +55,17 @@
                 ctaButtonStyle: 'buttonStyle',
                 ctaUseCustomImageBackground: 'useCustomImageBackground',
             }),
+            ...mapState('storeLanding',{
+                parent: 'parent',
+            }),
         },
         methods: {
+            ...mapMutations({
+                setFormIsOpen: 'storeLanding/storeForm/setIsOpen',
+            }),
+            showForm(){
+                this.setFormIsOpen(true);
+            }
         }
     }
 

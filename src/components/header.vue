@@ -9,6 +9,7 @@
             <special-button
                 :main-text="headerButtonTitle"
                 :sub-text="headerButtonSubtitle"
+                :on-click="showForm"
             />
              <div v-if="headerShowCountdown">
                 <p class="text-sm mb-2" :style="{color: styleMainColor}" v-text="headerCountdownTitle"></p>
@@ -21,8 +22,11 @@
             style="background-image: url('/images/landing/header-background.jpg')">
             <h1 v-if="headerTitle">{{headerTitle}}</h1>
             <h5 v-if="headerSubtitle">{{headerSubtitle}}</h5>
-            <a href="#" class="cta-button" :style="{background:styleAccentColor}"
-                :class="'rounding-' + styleStyleId">Sign Up Today!</a>
+            <special-button
+                :main-text="headerButtonTitle"
+                :sub-text="headerButtonSubtitle"
+                :on-click="showForm"
+            />
             <countdown-timer :deadline="headerCountdownDate" :rounding="styleStyleId" v-if="headerCountdownDate" :color="styleAccentColor"></countdown-timer>
         </section>
     </div>
@@ -41,8 +45,8 @@
             headerbackground(){
                 let color = hexRgb(this.styleBackgroundColor);
                 let colorBackground = `rgba(${color.red}, ${color.green}, ${color.blue}, .${this.styleBackgroundOpacity})`;
-                let image = this.headerImage.includes('http') ? this.headerImage : `/storage/${this.headerImage}`;
-                  return  `background: linear-gradient(${colorBackground} 0%, ${colorBackground} 100%), url(${image});`
+                let image = this.headerImage.includes('http') ? this.headerImage : `${this.parent}/storage/${this.headerImage}`;
+                return  `background: linear-gradient(${colorBackground} 0%, ${colorBackground} 100%), url(${image});`
             },
             ...mapState('storeLanding/storeStyles', {
                 styleShowLogo: 'showLogo',
@@ -93,8 +97,17 @@
                 ctaButtonStyle: 'buttonStyle',
                 ctaUseCustomImageBackground: 'useCustomImageBackground',
             }),
+            ...mapState('storeLanding',{
+                parent: 'parent',
+            }),
         },
         methods: {
+            ...mapMutations({
+                setFormIsOpen: 'storeLanding/storeForm/setIsOpen',
+            }),
+            showForm() {
+                this.setFormIsOpen(true);
+            }
         }
     }
 

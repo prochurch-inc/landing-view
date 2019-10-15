@@ -19,7 +19,7 @@
             <map-view></map-view>
             <footer-view ></footer-view>
             <form-view  v-if="formIsOpen" style="background-color: rgba(0,0,0,.9);" class="absolute top-0 right-0 left-0 bottom-0 w-full h-screen flex items-center justify-center"></form-view>
-            <thankyou-view  v-if="showThankYou"  :style="{ backgroundImage: 'linear-gradient( rgba(0, 0, 0, 0.80), rgba(0, 0, 0, 0.80)), url(' +  image + ')' }" class="absolute top-0 right-0 left-0 bottom-0 w-full h-screen flex items-start justify-center bg-cover"></thankyou-view>
+            <thankyou-view  v-if="showThankYou"  :style="{ backgroundImage: 'linear-gradient( rgba(0, 0, 0, 0.80), rgba(0, 0, 0, 0.80)), url(' +  imageView + ')' }" class="absolute top-0 right-0 left-0 bottom-0 w-full h-screen flex items-start justify-center bg-cover"></thankyou-view>
         </div>
     </div>
 </template>
@@ -55,6 +55,9 @@
             thankyouView
         },
         computed: {
+            ...mapState('storeLanding',{
+                parent: 'parent',
+            }),
             ...mapState('storeLanding/storeStyles',{
                 styleFontId: 'fontId',
             }),
@@ -65,6 +68,9 @@
                 'showThankYou',
                 'image'
             ]),
+            imageView(){
+                return this.image.includes('http') ? this.image : `${this.parent}/storage/${this.image}`
+            }
 
         },
         methods: {

@@ -13,7 +13,7 @@
                     <a href="#"
                         class="cta-button user-bg-color shadow inline-flex px-8 py-2 items-center justify-center hover-button"
                         :style="{background: styleAccentColor}"
-                        :class="'rounding-' + styleStyleId" @click.prevent="">
+                        :class="'rounding-' + styleStyleId" @click.prevent="showForm">
                         <span class="ml-4">
                             <p class="text-white">{{ ctaButtonText }}</p>
                             <p class="text-white text-xs font-normal tracking-wide" v-if="featuresShowButtons">Join <span
@@ -36,7 +36,7 @@
             backgroundStyles(){
                 let color = hexRgb(this.featuresBgColor);
                 let color_background = `rgba(${color.red}, ${color.green}, ${color.blue}, .${this.featuresBgOpacity})`;
-                return `linear-gradient(${color_background} 0%, ${color_background} 100%), url(/storage/${this.featuresTextureUrl})`
+                return `linear-gradient(${color_background} 0%, ${color_background} 100%), url(${this.parent}/storage/${this.featuresTextureUrl})`
             },
 
             ...mapState('storeLanding/storeStyles', {
@@ -79,9 +79,18 @@
                 featuresBackgroundImages: 'backgroundImages',
                 featuresShowTextTip: 'showTextTip',
                 featuresShowHighlights: 'showHighlights',
-            })
+            }),
+            ...mapState('storeLanding',{
+                parent: 'parent',
+            }),
         },
-         methods: {
+        methods: {
+            ...mapMutations({
+                setFormIsOpen: 'storeLanding/storeForm/setIsOpen',
+            }),
+            showForm(){
+               this.setFormIsOpen(true);
+            }
         }
     }
 
