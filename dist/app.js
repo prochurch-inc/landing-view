@@ -2986,13 +2986,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     ctaButtonStyle: 'buttonStyle',
     ctaUseCustomImageBackground: 'useCustomImageBackground'
   }), {}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])('storeLanding', {
-    parent: 'parent'
+    parent: 'parent',
+    preview: 'preview'
   })),
   methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapMutations"])({
     setFormIsOpen: 'storeLanding/storeForm/setIsOpen'
   }), {
     showForm: function showForm() {
-      this.setFormIsOpen(true);
+      if (this.preview == false) this.setFormIsOpen(true);
     }
   })
 });
@@ -3094,13 +3095,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     featuresShowTextTip: 'showTextTip',
     featuresShowHighlights: 'showHighlights'
   }), {}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])('storeLanding', {
-    parent: 'parent'
+    parent: 'parent',
+    preview: 'preview'
   })),
   methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapMutations"])({
     setFormIsOpen: 'storeLanding/storeForm/setIsOpen'
   }), {
     showForm: function showForm() {
-      this.setFormIsOpen(true);
+      if (this.preview == false) this.setFormIsOpen(true);
     }
   })
 });
@@ -3836,13 +3838,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     ctaButtonStyle: 'buttonStyle',
     ctaUseCustomImageBackground: 'useCustomImageBackground'
   }), {}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapState"])('storeLanding', {
-    parent: 'parent'
+    parent: 'parent',
+    preview: 'preview'
   })),
   methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapMutations"])({
     setFormIsOpen: 'storeLanding/storeForm/setIsOpen'
   }), {
     showForm: function showForm() {
-      this.setFormIsOpen(true);
+      if (this.preview == false) this.setFormIsOpen(true);
     }
   })
 });
@@ -3932,7 +3935,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     thankyouView: _thankyou_vue__WEBPACK_IMPORTED_MODULE_11__["default"]
   },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_12__["mapState"])('storeLanding', {
-    parent: 'parent'
+    parent: 'parent',
+    preview: 'preview'
   }), {}, Object(vuex__WEBPACK_IMPORTED_MODULE_12__["mapState"])('storeLanding/storeStyles', {
     styleFontId: 'fontId'
   }), {}, Object(vuex__WEBPACK_IMPORTED_MODULE_12__["mapState"])('storeLanding/storeForm', {

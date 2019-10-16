@@ -57,6 +57,7 @@
         computed: {
             ...mapState('storeLanding',{
                 parent: 'parent',
+                preview: 'preview',
             }),
             ...mapState('storeLanding/storeStyles',{
                 styleFontId: 'fontId',

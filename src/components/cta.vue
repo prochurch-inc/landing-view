@@ -57,6 +57,7 @@
             }),
             ...mapState('storeLanding',{
                 parent: 'parent',
+                preview: 'preview',
             }),
         },
         methods: {
@@ -64,7 +65,8 @@
                 setFormIsOpen: 'storeLanding/storeForm/setIsOpen',
             }),
             showForm(){
-                this.setFormIsOpen(true);
+                if(this.preview == false)
+                    this.setFormIsOpen(true);
             }
         }
     }
