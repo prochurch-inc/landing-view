@@ -1,5 +1,5 @@
 <template>
-    <a class="cta-button px-8 py-2 user-bg-color shadow inline-flex items-center justify-center hover:bg-gray-400"
+    <a class="cta-button px-8 py-2 user-bg-color shadow inline-flex items-center justify-center cursor-pointer hover:bg-gray-400"
         :style="{background: 'linear-gradient(rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 14.2%, rgba(0, 0, 0, .30) 100%), ' + accentColor, 'color': textColor}"
         :class="'rounding-' + styleId"
         @click.prevent="onClick">
