@@ -12,7 +12,7 @@
                 :on-click="showForm"
             />
              <div v-if="headerShowCountdown">
-                <p class="text-sm mb-2" :style="{color: styleMainColor}" v-text="headerCountdownTitle"></p>
+                <p class="text-sm mb-2" :style="{color: styleAccentColor}" v-text="headerCountdownTitle"></p>
                 <countdown-timer :color="styleAccentColor" :rounding="styleStyleId" :deadline="headerCountdownDate" :endingtime="headerCountdownTime" :day="headerCountdownDay" :type="headerCountdownType" :countdowntitle="headerCountdownTitle" ></countdown-timer>
             </div>
         </section>
