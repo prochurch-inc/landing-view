@@ -4005,6 +4005,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -28966,9 +28967,10 @@ var render = function() {
     _vm._v(" "),
     _c(
       "div",
-      { staticClass: "flex items-center justify-between my-6" },
+      { staticClass: "flex items-center justify-center my-6" },
       [
         _c("the-mask", {
+          staticClass: "py-3 px-6 border text-center rounded-sm",
           attrs: { mask: "(###) ###-####" },
           model: {
             value: _vm.phoneModel,
