@@ -1,40 +1,40 @@
 <template>
     <div>
-    <skeleton-container>
-    <div slot="builder">
-        <h1 class="text-3xl font-thin tracking-wide mt-6 mb-8 font-heading">Sign Up Form</h1>
-            <Settings />
-            <draggable v-model="sectionsModel" handle=".handle" tag="div">
-                <div class="w-full bg-white rounded mb-6 mr-6" v-for="(section, index) in sectionsModel">
-                    <form-title-bar class="cursor-pointer"
-                        :open="section.open" :title="section.title" @toggle="_toggleSection(index)" :change-status="section.change_status">
-                        <div class="form-switch inline-block align-middle" v-if="section.removable">
-                            <input type="checkbox" :name="`use_form_${section.name}`" :id="`use_form_${section.name}`"
-                                class="form-switch-checkbox" :checked="section.use" @change="updateSectionUse({index: index, value: $event.target.checked})" />
-                            <label class="form-switch-label" :for="`use_form_${section.name}`" id="use_highlights_label"></label>
+        <skeleton-container>
+            <div slot="builder">
+                <h1 class="text-3xl font-thin tracking-wide mt-6 mb-8 font-heading">Sign Up Form</h1>
+                    <Settings />
+                    <draggable v-model="sectionsModel" handle=".handle" tag="div">
+                        <div class="w-full bg-white rounded mb-6 mr-6" v-for="(section, index) in sectionsModel">
+                            <form-title-bar class="cursor-pointer"
+                                :open="section.open" :title="section.title" @toggle="_toggleSection(index)" :change-status="section.change_status">
+                                <div class="form-switch inline-block align-middle" v-if="section.removable">
+                                    <input type="checkbox" :name="`use_form_${section.name}`" :id="`use_form_${section.name}`"
+                                        class="form-switch-checkbox" :checked="section.use" @change="updateSectionUse({index: index, value: $event.target.checked})" />
+                                    <label class="form-switch-label" :for="`use_form_${section.name}`" id="use_highlights_label"></label>
+                                </div>
+                            </form-title-bar>
+                            <div class="contentSection p-8 border-t-4 border-gray-100" v-show="section.open">
+                                <input type="text" :key="inputIndex" class="form-input block mb-4 w-full" v-for="(input, inputIndex) in section.inputs"
+                                    :value="input.title" @input="_updateSectionInputTitle({sectionIndex: index, inputIndex, value: $event.target.value})">
+                            </div>
                         </div>
-                    </form-title-bar>
-                    <div class="contentSection p-8 border-t-4 border-gray-100" v-show="section.open">
-                        <input type="text" :key="inputIndex" class="form-input block mb-4 w-full" v-for="(input, inputIndex) in section.inputs"
-                            :value="input.title" @input="_updateSectionInputTitle({sectionIndex: index, inputIndex, value: $event.target.value})">
+                    </draggable>
+                    <div class="buttons text-center mt-12">
+                        <button type="button"  @click.prevent="_saveSignUpForm"
+                            class="bg-blue-500 block w-full py-5 px-12 my-4 text-white rounded uppercase hover:bg-blue-700 focus:outline-none">
+                            Continue to Next Step
+                        </button>
                     </div>
-                </div>
-            </draggable>
-            <div class="buttons text-center mt-12">
-                <button type="button"  @click.prevent="_saveSignUpForm"
-                    class="bg-blue-500 block w-full py-5 px-12 my-4 text-white rounded uppercase hover:bg-blue-700 focus:outline-none">
-                    Continue to Next Step
-                </button>
             </div>
-    </div>
-    <div slot="preview">
-        <landing-preview ></landing-preview>
-    </div>
-    </skeleton-container>
+            <div slot="preview">
+                <landing-preview ></landing-preview>
+            </div>
+        </skeleton-container>
     </div>
 </template>
 <script>
-    import skeletonContainer from './../../skeleton.vue';
+    import skeletonContainer from '../Skeleton.vue';
     import axios from 'axios';
     import FormTitleBar from './formTitleBar.vue';
     import draggable from 'vuedraggable';
