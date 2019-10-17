@@ -4778,7 +4778,7 @@ exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader
 
 
 // module
-exports.push([module.i, ".builder-container {\n  display: grid;\n  position: fixed;\n  height: calc(100vh - 8rem);\n  width: calc(100% - 4rem);\n  top: 8rem;\n  left: 4rem;\n  bottom: 0;\n}\n.preview-switcher {\n  width: calc(100vh-4rem);\n  margin-left: 4rem;\n@apply bg-black p-4 fixed bottom-0 left-0 right-0 z-30 text-white flex items-center justify-center;\n}\n.grid-builder {\n@apply bg-gray-200;\n}\n@media screen and (max-width: 750px) {\n.builder-container {\n    grid-template-columns: 1fr;\n}\n.grid-builder {\n@apply p-6;\n}\n.grid-preview {\n    display: none;\n}\n.mobile-preview {\n    position: absolute;\n    top: 0;\n    bottom: 0;\n    left: 0;\n    right: 0;\n    width: 100%;\n    z-index: 20;\n    height: calc(100vh-140px);\n@apply bg-white;\n}\n}\n@media screen and (min-width: 751px) {\n.preview-switcher {\n@apply hidden;\n}\n.builder-container {\n    grid-template-columns: minmax(375px, 450px) minmax(375px, 1fr);\n}\n.grid-builder {\n    /*background: blue;*/\n    height: calc(100vh - 140px);\n@apply p-4;\n    /*height: 100vh;*/\n}\n.grid-preview {\n    height: calc(100vh - 140px);\n    /*overflow-y: auto;*/\n    /*height: 100vh;*/\n@apply bg-white;\n}\n.mobile-preview {\n    display: none;\n}\n}\n", ""]);
+exports.push([module.i, ".builder-container {\n  display: grid;\n  position: fixed;\n  height: calc(100vh - 8rem);\n  width: calc(100% - 4rem);\n  top: 8rem;\n  left: 4rem;\n  bottom: 0;\n}\n.preview-switcher {\n  width: calc(100vh-4rem);\n  margin-left: 4rem;\n  background-color: #22292f;\n  padding: 1rem;\n  position: fixed;\n  bottom: 0;\n  left: 0;\n  right: 0;\n  z-index: 30;\n  color: #fff;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n.grid-builder {\n  background-color: #E4E9ED;\n}\n@media screen and (max-width: 750px) {\n.builder-container {\n    grid-template-columns: 1fr;\n}\n.grid-builder {\n    padding: 1.5rem;\n}\n.grid-preview {\n    display: none;\n}\n.mobile-preview {\n    position: absolute;\n    top: 0;\n    bottom: 0;\n    left: 0;\n    right: 0;\n    width: 100%;\n    z-index: 20;\n    height: calc(100vh-140px);\n    background-color: #fff;\n}\n}\n@media screen and (min-width: 751px) {\n.preview-switcher {\n    display: none;\n}\n.builder-container {\n    grid-template-columns: minmax(375px, 450px) minmax(375px, 1fr);\n}\n.grid-builder {\n    /*background: blue;*/\n    height: calc(100vh - 140px);\n    padding: 1rem;\n    /*height: 100vh;*/\n}\n.grid-preview {\n    height: calc(100vh - 140px);\n    /*overflow-y: auto;*/\n    /*height: 100vh;*/\n    background-color: #fff;\n}\n.mobile-preview {\n    display: none;\n}\n}\n", ""]);
 
 // exports
 
@@ -4797,7 +4797,7 @@ exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader
 
 
 // module
-exports.push([module.i, ".features {\n  background: url(\"/images/funky-lines.png\");\n@apply w-full;\n}\n.feature .item {\n@apply flex mb-12;\n}\n.feature .item img {\n  z-index: 1;\n  width: 317px;\n  height: 293px;\n}\n.feature:nth-child(odd) .item .text-area {\n  margin-top: 4rem;\n  margin-right: -4rem;\n  z-index: 2;\n}\n.feature:nth-child(even) .item {\n  flex-direction: row-reverse;\n}\n.feature:nth-child(even) .item .text-area {\n  margin-top: 4rem;\n  margin-left: -4rem;\n  z-index: 2;\n}\n.feature .text-area {\n  background: rgba(255, 255, 255, 0.9);\n  min-height: 19rem;\n  box-shadow: 22px 22px 40px rgba(0, 0, 0, 0.15);\n  backdrop-filter: blur(4px);\n@apply p-8 max-w-md flex-grow;\n}\n.feature .text-area .paragraph {\n  width: 20rem;\n}\n.feature:last-child .buttons {\n  display: none;\n}\n", ""]);
+exports.push([module.i, ".features {\n  background: url(\"/images/funky-lines.png\");\n  width: 100%;\n}\n.feature .item {\n  display: flex;\n  margin-bottom: 3rem;\n}\n.feature .item img {\n  z-index: 1;\n  width: 317px;\n  height: 293px;\n}\n.feature:nth-child(odd) .item .text-area {\n  margin-top: 4rem;\n  margin-right: -4rem;\n  z-index: 2;\n}\n.feature:nth-child(even) .item {\n  flex-direction: row-reverse;\n}\n.feature:nth-child(even) .item .text-area {\n  margin-top: 4rem;\n  margin-left: -4rem;\n  z-index: 2;\n}\n.feature .text-area {\n  background: rgba(255, 255, 255, 0.9);\n  min-height: 19rem;\n  box-shadow: 22px 22px 40px rgba(0, 0, 0, 0.15);\n  backdrop-filter: blur(4px);\n  padding: 2rem;\n  max-width: 28rem;\n  flex-grow: 1;\n}\n.feature .text-area .paragraph {\n  width: 20rem;\n}\n.feature:last-child .buttons {\n  display: none;\n}\n", ""]);
 
 // exports
 
@@ -4816,7 +4816,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".options label[data-v-2fa559e6] {\n@apply inline-flex items-center justify-center h-12 w-12 border shadow;\n}\n.options label[data-v-2fa559e6]:hover {\n@apply bg-gray-200;\n}\n.options input[type=\"radio\"]:checked + label[data-v-2fa559e6] {\n@apply bg-gray-200 border-blue-500;\n}\n", ""]);
+exports.push([module.i, ".options label[data-v-2fa559e6] {\n  display: inline-flex;\n  align-items: center;\n  justify-content: center;\n  height: 3rem;\n  width: 3rem;\n  border-width: 1px;\n  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);\n}\n.options label[data-v-2fa559e6]:hover {\n  background-color: #E4E9ED;\n}\n.options input[type=\"radio\"]:checked + label[data-v-2fa559e6] {\n  background-color: #E4E9ED;\n  border-color: #2E87EF;\n}\n", ""]);
 
 // exports
 
@@ -4835,7 +4835,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".options label[data-v-7967177a] {\n@apply inline-flex items-center justify-center h-12 w-12 border shadow;\n}\n.options label[data-v-7967177a]:hover {\n@apply bg-gray-200;\n}\n.options input[type=\"radio\"]:checked + label[data-v-7967177a] {\n@apply bg-gray-200 border-blue-500;\n}\n", ""]);
+exports.push([module.i, ".options label[data-v-7967177a] {\n  display: inline-flex;\n  align-items: center;\n  justify-content: center;\n  height: 3rem;\n  width: 3rem;\n  border-width: 1px;\n  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);\n}\n.options label[data-v-7967177a]:hover {\n  background-color: #E4E9ED;\n}\n.options input[type=\"radio\"]:checked + label[data-v-7967177a] {\n  background-color: #E4E9ED;\n  border-color: #2E87EF;\n}\n", ""]);
 
 // exports
 
@@ -4873,7 +4873,7 @@ exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader
 
 
 // module
-exports.push([module.i, "\n.step-progress[data-v-230f5a58] {\n    transition: width 2s ease;\n}\n.slide-fade-enter-active[data-v-230f5a58] {\n  transition: all 2s ease;\n}\n.slide-fade-leave-active[data-v-230f5a58] {\n  transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);\n}\n.slide-fade-enter[data-v-230f5a58], .slide-fade-leave-to[data-v-230f5a58]\n/* .slide-fade-leave-active below version 2.1.8 */ {\n  /* transform: translateX(-50px); */\n  opacity: 0;\n}\n\n", ""]);
+exports.push([module.i, ".step-progress[data-v-230f5a58] {\n  transition: width 2s ease;\n}\n.slide-fade-enter-active[data-v-230f5a58] {\n  transition: all 2s ease;\n}\n.slide-fade-leave-active[data-v-230f5a58] {\n  transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);\n}\n.slide-fade-enter[data-v-230f5a58], .slide-fade-leave-to[data-v-230f5a58]\n/* .slide-fade-leave-active below version 2.1.8 */ {\n  /* transform: translateX(-50px); */\n  opacity: 0;\n}\n\n", ""]);
 
 // exports
 
@@ -4892,7 +4892,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\ndiv.inputgroup[data-v-f725cfbe] {\n@apply block font-heading;\n}\ndiv.inputgroup label[data-v-f725cfbe] {\n@apply mr-6 text-sm w-32 text-gray-400;\n}\ndiv.inputgroup.check label[data-v-f725cfbe] {\n@apply mr-0 text-sm w-full;\n}\ndiv.inputgroup input[type=email][data-v-f725cfbe] {\n@apply flex-grow py-3 px-6 border rounded-sm border-gray-300;\n}\ndiv.inputgroup input[type=date][data-v-f725cfbe] {\n@apply flex-grow py-3 px-6 border rounded-sm border-gray-300;\n}\ndiv.inputgroup input[type=email][data-v-f725cfbe]:required {\n    box-shadow: none;\n}\ndiv.inputgroup input[type=date][data-v-f725cfbe]:required {\n    box-shadow: none;\n}\ndiv.inputgroup input.error[data-v-f725cfbe] {\n@apply border-red-500 bg-red-100;\n}\n", ""]);
+exports.push([module.i, "div.inputgroup[data-v-f725cfbe] {\n  display: block;\n  font-family: Montserrat, Roboto, system-ui, BlinkMacSystemFont, -apple-system, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;\n}\ndiv.inputgroup label[data-v-f725cfbe] {\n  margin-right: 1.5rem;\n  font-size: 0.875rem;\n  width: 8rem;\n  color: #AEB1BE;\n}\ndiv.inputgroup.check label[data-v-f725cfbe] {\n  margin-right: 0;\n  font-size: 0.875rem;\n  width: 100%;\n}\ndiv.inputgroup input[type=email][data-v-f725cfbe] {\n  flex-grow: 1;\n  padding-top: 0.75rem;\n  padding-bottom: 0.75rem;\n  padding-left: 1.5rem;\n  padding-right: 1.5rem;\n  border-width: 1px;\n  border-radius: 0.125rem;\n  border-color: #E5E7EB;\n}\ndiv.inputgroup input[type=date][data-v-f725cfbe] {\n  flex-grow: 1;\n  padding-top: 0.75rem;\n  padding-bottom: 0.75rem;\n  padding-left: 1.5rem;\n  padding-right: 1.5rem;\n  border-width: 1px;\n  border-radius: 0.125rem;\n  border-color: #E5E7EB;\n}\ndiv.inputgroup input[type=email][data-v-f725cfbe]:required {\n  box-shadow: none;\n}\ndiv.inputgroup input[type=date][data-v-f725cfbe]:required {\n  box-shadow: none;\n}\ndiv.inputgroup input.error[data-v-f725cfbe] {\n  border-color: #E86F52;\n  background-color: #FFD6CC;\n}\n", ""]);
 
 // exports
 
@@ -4911,7 +4911,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.handle[data-v-a2e163ec] {\n    transition: color 0.2s ease-in-out;\n}\n", ""]);
+exports.push([module.i, ".handle[data-v-a2e163ec] {\n  transition: color 0.2s ease-in-out;\n}\n", ""]);
 
 // exports
 
@@ -4930,7 +4930,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\ndiv.inputgroup[data-v-0b8d13d4] {\n@apply block justify-between items-center font-heading;\n}\ndiv.inputgroup label[data-v-0b8d13d4] {\n@apply mr-6 text-sm w-32 text-gray-400;\n}\ndiv.inputgroup.check label[data-v-0b8d13d4] {\n@apply mr-0 text-sm w-full;\n}\ndiv.inputgroup input[type=text][data-v-0b8d13d4] {\n@apply flex-grow py-3 px-6 border rounded-sm border-gray-300;\n}\ndiv.inputgroup input[type=date][data-v-0b8d13d4] {\n@apply flex-grow py-3 px-6 border rounded-sm border-gray-300;\n}\ndiv.inputgroup input[type=text][data-v-0b8d13d4]:required {\n    box-shadow: none;\n}\ndiv.inputgroup input[type=date][data-v-0b8d13d4]:required {\n    box-shadow: none;\n}\ndiv.inputgroup input.error[data-v-0b8d13d4] {\n@apply border-red-500 bg-red-100;\n}\n", ""]);
+exports.push([module.i, "div.inputgroup[data-v-0b8d13d4] {\n  display: block;\n  justify-content: space-between;\n  align-items: center;\n  font-family: Montserrat, Roboto, system-ui, BlinkMacSystemFont, -apple-system, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;\n}\ndiv.inputgroup label[data-v-0b8d13d4] {\n  margin-right: 1.5rem;\n  font-size: 0.875rem;\n  width: 8rem;\n  color: #AEB1BE;\n}\ndiv.inputgroup.check label[data-v-0b8d13d4] {\n  margin-right: 0;\n  font-size: 0.875rem;\n  width: 100%;\n}\ndiv.inputgroup input[type=text][data-v-0b8d13d4] {\n  flex-grow: 1;\n  padding-top: 0.75rem;\n  padding-bottom: 0.75rem;\n  padding-left: 1.5rem;\n  padding-right: 1.5rem;\n  border-width: 1px;\n  border-radius: 0.125rem;\n  border-color: #E5E7EB;\n}\ndiv.inputgroup input[type=date][data-v-0b8d13d4] {\n  flex-grow: 1;\n  padding-top: 0.75rem;\n  padding-bottom: 0.75rem;\n  padding-left: 1.5rem;\n  padding-right: 1.5rem;\n  border-width: 1px;\n  border-radius: 0.125rem;\n  border-color: #E5E7EB;\n}\ndiv.inputgroup input[type=text][data-v-0b8d13d4]:required {\n  box-shadow: none;\n}\ndiv.inputgroup input[type=date][data-v-0b8d13d4]:required {\n  box-shadow: none;\n}\ndiv.inputgroup input.error[data-v-0b8d13d4] {\n  border-color: #E86F52;\n  background-color: #FFD6CC;\n}\n", ""]);
 
 // exports
 
@@ -4949,7 +4949,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\ninput[type=number][data-v-6e965e1a] {\n    appearance: none;\n    -webkit-appearance: none;\n    -moz-appearance:textfield;\n}\ninput[type=number][data-v-6e965e1a]::-webkit-inner-spin-button,\ninput[type=number][data-v-6e965e1a]::-webkit-outer-spin-button {\n  -webkit-appearance: none;\n  -moz-appearance: none;\n  margin: 0;\n}\n", ""]);
+exports.push([module.i, "input[type=number][data-v-6e965e1a] {\n  appearance: none;\n  -webkit-appearance: none;\n  -moz-appearance:textfield;\n}\ninput[type=number][data-v-6e965e1a]::-webkit-inner-spin-button,\ninput[type=number][data-v-6e965e1a]::-webkit-outer-spin-button {\n  -webkit-appearance: none;\n  -moz-appearance: none;\n  margin: 0;\n}\n", ""]);
 
 // exports
 
@@ -4975,7 +4975,7 @@ exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Lat
 exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Lato:400,400i,700|Libre+Baskerville:400,400i&display=swap);", ""]);
 
 // module
-exports.push([module.i, "\n.body-1 blockquote,\n.body-2 blockquote,\n.body-3 blockquote,\n.body-4 blockquote,\n.body-5 blockquote,\n.body-6 blockquote {\n    margin-left: 2rem;\n    border-left: 2px gray solid;\n    padding-left: 1rem;\n    font-style: italic;\n}\n.body-1,\n.body-1 p,\n.body-1 li,\n.body-1 ol,\n.body-1 a.cta-button,\n.body-1 div {\n    font-family: 'PT Sans Narrow', sans-serif;\n    font-weight: 400;\n}\n.heading-1,\n.heading-1 h1,\n.heading-1 h2,\n.heading-1 h3,\n.heading-1 h4,\n.heading-1 h5 {\n    font-family: 'Montserrat', sans-serif;\n    font-weight: 700;\n    line-height: 1.5;\n    margin-bottom: 1rem;\n}\n.heading-1 h1,\n.heading-2 h1,\n.heading-3 h1,\n.heading-4 h1,\n.heading-5 h1,\n.heading-6 h1 {\n    font-size: 1.5rem;\n    /*text-2xl*/\n}\n.body-2,\n.body-2 p,\n.body-2 li,\n.body-2 ol,\n.body-2 div {\n    font-family: 'Maven Pro', sans-serif;\n    font-weight: 400;\n}\n.heading-2,\n.heading-2 h1,\n.heading-2 h2,\n.heading-2 h3,\n.heading-2 h4,\n.heading-2 h5,\n.heading-2 a.cta-button {\n    font-family: 'Oswald', sans-serif;\n    font-weight: 500;\n    line-height: 1.5;\n    margin-bottom: 1rem;\n}\n.body-3,\n.body-3 p,\n.body-3 li,\n.body-3 ol,\n.body-3 div {\n    font-family: 'Source Sans Pro', sans-serif;\n    font-weight: 400;\n}\n.heading-3,\n.heading-3 h1,\n.heading-3 h2,\n.heading-3 h3,\n.heading-3 h4,\n.heading-3 h5,\n.heading-3 a.cta-button {\n    font-family: 'Bitter', serif;\n    font-weight: 700;\n    line-height: 1.5;\n    margin-bottom: 1rem;\n}\n.body-4,\n.body-4 p,\n.body-4 li,\n.body-4 ol,\n.body-4 div {\n    font-family: 'Roboto Slab', serif;\n    font-weight: 400;\n}\n.heading-4,\n.heading-4 h1,\n.heading-4 h2,\n.heading-4 h3,\n.heading-4 h4,\n.heading-4 h5,\n.heading-4 a.cta-button {\n    font-family: 'Karla', sans-serif;\n    font-weight: 700;\n    line-height: 1.5;\n    margin-bottom: 1rem;\n}\n.body-5,\n.body-5 p,\n.body-5 li,\n.body-5 ol,\n.body-5 div {\n    font-family: 'Lato', sans-serif;\n    font-weight: 400;\n}\n.heading-5,\n.heading-5 h1,\n.heading-5 h2,\n.heading-5 h3,\n.heading-5 h4,\n.heading-5 h5,\n.heading-5 a.cta-button {\n    font-family: 'Playfair Display', serif;\n    font-weight: 400;\n    line-height: 1.5;\n    margin-bottom: 1rem;\n}\n.body-6,\n.body-6 p,\n.body-6 li,\n.body-6 ol,\n.body-6 div {\n    font-family: 'Lato', sans-serif;\n    font-weight: 400;\n}\n.heading-6,\n.heading-6 h1,\n.heading-6 h2,\n.heading-6 h3,\n.heading-6 h4,\n.heading-6 h5,\n.heading-6 a.cta-button {\n    font-family: 'Libre Baskerville', serif;\n    font-weight: 400;\n    font-style: italic;\n    line-height: 1.5;\n    margin-bottom: 1rem;\n}\n.rounding-1 {\n    border-radius: 0;\n}\n.rounding-2 {\n    border-radius: .25rem;\n}\n.rounding-3 {\n    border-radius: 500px;\n}\n.video-rounding-1 {\n    border-radius: 0;\n}\n.video-rounding-2,\n.video-rounding-3 {\n    border-radius: .5rem;\n}\n\n\n\n", ""]);
+exports.push([module.i, ".body-1 blockquote,\n.body-2 blockquote,\n.body-3 blockquote,\n.body-4 blockquote,\n.body-5 blockquote,\n.body-6 blockquote {\n  margin-left: 2rem;\n  border-left: 2px gray solid;\n  padding-left: 1rem;\n  font-style: italic;\n}\n.body-1,\n.body-1 p,\n.body-1 li,\n.body-1 ol,\n.body-1 a.cta-button,\n.body-1 div {\n  font-family: 'PT Sans Narrow', sans-serif;\n  font-weight: 400;\n}\n.heading-1,\n.heading-1 h1,\n.heading-1 h2,\n.heading-1 h3,\n.heading-1 h4,\n.heading-1 h5 {\n  font-family: 'Montserrat', sans-serif;\n  font-weight: 700;\n  line-height: 1.5;\n  margin-bottom: 1rem;\n}\n.heading-1 h1,\n.heading-2 h1,\n.heading-3 h1,\n.heading-4 h1,\n.heading-5 h1,\n.heading-6 h1 {\n  font-size: 1.5rem;\n  /*text-2xl*/\n}\n.body-2,\n.body-2 p,\n.body-2 li,\n.body-2 ol,\n.body-2 div {\n  font-family: 'Maven Pro', sans-serif;\n  font-weight: 400;\n}\n.heading-2,\n.heading-2 h1,\n.heading-2 h2,\n.heading-2 h3,\n.heading-2 h4,\n.heading-2 h5,\n.heading-2 a.cta-button {\n  font-family: 'Oswald', sans-serif;\n  font-weight: 500;\n  line-height: 1.5;\n  margin-bottom: 1rem;\n}\n.body-3,\n.body-3 p,\n.body-3 li,\n.body-3 ol,\n.body-3 div {\n  font-family: 'Source Sans Pro', sans-serif;\n  font-weight: 400;\n}\n.heading-3,\n.heading-3 h1,\n.heading-3 h2,\n.heading-3 h3,\n.heading-3 h4,\n.heading-3 h5,\n.heading-3 a.cta-button {\n  font-family: 'Bitter', serif;\n  font-weight: 700;\n  line-height: 1.5;\n  margin-bottom: 1rem;\n}\n.body-4,\n.body-4 p,\n.body-4 li,\n.body-4 ol,\n.body-4 div {\n  font-family: 'Roboto Slab', serif;\n  font-weight: 400;\n}\n.heading-4,\n.heading-4 h1,\n.heading-4 h2,\n.heading-4 h3,\n.heading-4 h4,\n.heading-4 h5,\n.heading-4 a.cta-button {\n  font-family: 'Karla', sans-serif;\n  font-weight: 700;\n  line-height: 1.5;\n  margin-bottom: 1rem;\n}\n.body-5,\n.body-5 p,\n.body-5 li,\n.body-5 ol,\n.body-5 div {\n  font-family: 'Lato', sans-serif;\n  font-weight: 400;\n}\n.heading-5,\n.heading-5 h1,\n.heading-5 h2,\n.heading-5 h3,\n.heading-5 h4,\n.heading-5 h5,\n.heading-5 a.cta-button {\n  font-family: 'Playfair Display', serif;\n  font-weight: 400;\n  line-height: 1.5;\n  margin-bottom: 1rem;\n}\n.body-6,\n.body-6 p,\n.body-6 li,\n.body-6 ol,\n.body-6 div {\n  font-family: 'Lato', sans-serif;\n  font-weight: 400;\n}\n.heading-6,\n.heading-6 h1,\n.heading-6 h2,\n.heading-6 h3,\n.heading-6 h4,\n.heading-6 h5,\n.heading-6 a.cta-button {\n  font-family: 'Libre Baskerville', serif;\n  font-weight: 400;\n  font-style: italic;\n  line-height: 1.5;\n  margin-bottom: 1rem;\n}\n.rounding-1 {\n  border-radius: 0;\n}\n.rounding-2 {\n  border-radius: .25rem;\n}\n.rounding-3 {\n  border-radius: 500px;\n}\n.video-rounding-1 {\n  border-radius: 0;\n}\n.video-rounding-2,\n.video-rounding-3 {\n  border-radius: .5rem;\n}\n\n\n\n", ""]);
 
 // exports
 
@@ -27469,7 +27469,7 @@ var render = function() {
     "a",
     {
       staticClass:
-        "cta-button px-8 py-2 user-bg-color shadow inline-flex items-center justify-center hover:bg-gray-400",
+        "cta-button px-8 py-2 user-bg-color shadow inline-flex items-center justify-center cursor-pointer hover:bg-gray-400",
       class: "rounding-" + _vm.styleId,
       style: {
         background:
@@ -29147,7 +29147,7 @@ var render = function() {
                   [
                     _c("p", {
                       staticClass: "text-sm mb-2",
-                      style: { color: _vm.styleMainColor },
+                      style: { color: _vm.styleAccentColor },
                       domProps: {
                         textContent: _vm._s(_vm.headerCountdownTitle)
                       }
@@ -48088,7 +48088,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/chirag/www/landing-view/src/app.js */"./src/app.js");
+module.exports = __webpack_require__(/*! /Users/ryanhayden/vue/landing-view/src/app.js */"./src/app.js");
 
 
 /***/ })
