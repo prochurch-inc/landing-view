@@ -28,7 +28,7 @@
             ...mapState('storeThankYou', [
                 'heading','body','image','buttonText','buttonLink','imageChangeStatus','copyChangeStatus','buttonChangeStatus',
             ]),
-        }
+        },
     }
 </script>
 

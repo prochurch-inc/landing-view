@@ -3262,7 +3262,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     settingsStep: 'step'
   }), {}, Object(vuex__WEBPACK_IMPORTED_MODULE_8__["mapState"])('storeLanding/storeStyles', {
     styleMainColor: 'mainColor'
-  }), {}, Object(vuex__WEBPACK_IMPORTED_MODULE_8__["mapState"])('storeLanding/storeForm', ['step', 'isOpen']), {}, Object(vuex__WEBPACK_IMPORTED_MODULE_8__["mapState"])('storeLanding', ['preview', 'preview']), {
+  }), {}, Object(vuex__WEBPACK_IMPORTED_MODULE_8__["mapState"])('storeLanding/storeForm', ['step', 'isOpen']), {}, Object(vuex__WEBPACK_IMPORTED_MODULE_8__["mapState"])('storeLanding', ['preview', 'preview']), {}, Object(vuex__WEBPACK_IMPORTED_MODULE_8__["mapState"])('storeThankYou', ['showThankYou']), {
     formNumber: function formNumber() {
       return this.getActiveSections.length;
     },
@@ -3277,21 +3277,23 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_8__["mapActions"])({
     submitLandingForm: 'storeLanding/storeForm/submitLandingForm'
-  }), {}, Object(vuex__WEBPACK_IMPORTED_MODULE_8__["mapMutations"])('storeLanding/storeForm', ['nextStep', 'previousStep', 'setIsOpen', 'setStep']), {
+  }), {}, Object(vuex__WEBPACK_IMPORTED_MODULE_8__["mapMutations"])('storeLanding/storeForm', ['nextStep', 'previousStep', 'setIsOpen', 'setStep']), {}, Object(vuex__WEBPACK_IMPORTED_MODULE_8__["mapMutations"])('storeThankYou', ['setShowThankYou']), {
     hideform: function hideform() {
       this.isOpenModel = false;
     },
     done: function done() {
+      var _this = this;
+
       if (this.preview) {
         swal("Note", "You are in preview mode, form can not be submitted.", "info");
         return;
       }
 
       this.submitLandingForm().then(function (response) {
-        swal({
-          title: "Sign-Up Form Submitted",
-          icon: "success"
-        });
+        // Show thankyou modal
+        _this.hideform();
+
+        _this.setShowThankYou(true);
       })["catch"](function (error) {
         swal({
           title: "There was an error...",
@@ -3916,6 +3918,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 
 
@@ -3968,6 +3972,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       if (this.formIsOpen == true) {
         body.classList.add("overflow-hidden");
       } else if (this.formIsOpen == false) {
+        body.classList.add("overflow-auto");
+      }
+    },
+    showThankYou: function showThankYou() {
+      /* We don't want to add overflow to body when it's in preview mode in adcampaign */
+      if (this.preview == true) return;
+      var body = document.body;
+      body.classList.remove("overflow-hidden");
+      body.classList.add("overflow-auto");
+
+      if (this.showThankYou == true) {
+        body.classList.add("overflow-hidden");
+      } else if (this.showThankYou == false) {
         body.classList.add("overflow-auto");
       }
     }
@@ -24482,7 +24499,12 @@ var render = function() {
         _vm.showThankYou
           ? _c("thankyou-view", {
               staticClass:
-                "absolute top-0 right-0 left-0 bottom-0 w-full h-screen flex items-start justify-center bg-cover",
+                "top-0 right-0 left-0 bottom-0 w-full h-screen flex items-start justify-center bg-cover",
+              class: {
+                absolute: _vm.preview == true,
+                fixed: _vm.preview == false
+              },
+              staticStyle: { "z-index": "20" },
               style: {
                 backgroundImage:
                   "linear-gradient( rgba(0, 0, 0, 0.80), rgba(0, 0, 0, 0.80)), url(" +

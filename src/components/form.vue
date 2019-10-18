@@ -94,6 +94,9 @@
             ...mapState('storeLanding',[
                 'preview', 'preview'
             ]),
+            ...mapState('storeThankYou',[
+                'showThankYou',
+            ]),
             formNumber(){
                 return this.getActiveSections.length
             },
@@ -116,6 +119,9 @@
             ...mapMutations('storeLanding/storeForm', [
                 'nextStep', 'previousStep', 'setIsOpen', 'setStep'
             ]),
+            ...mapMutations('storeThankYou', [
+                'setShowThankYou'
+            ]),
             hideform(){
                 this.isOpenModel = false
             },
@@ -126,10 +132,9 @@
                 }
 
                 this.submitLandingForm().then(response => {
-                    swal({
-                        title: "Sign-Up Form Submitted",
-                        icon: "success",
-                    })
+                    // Show thankyou modal
+                    this.hideform()
+                    this.setShowThankYou(true)
                 }).catch(error => {
                     swal({
                         title: "There was an error...",

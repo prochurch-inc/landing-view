@@ -23,7 +23,9 @@
                 :class="{'absolute': preview == true, 'fixed': preview == false}"
                 v-if="formIsOpen"
             ></form-view>
-            <thankyou-view  v-if="showThankYou"  :style="{ backgroundImage: 'linear-gradient( rgba(0, 0, 0, 0.80), rgba(0, 0, 0, 0.80)), url(' +  imageView + ')' }" class="absolute top-0 right-0 left-0 bottom-0 w-full h-screen flex items-start justify-center bg-cover"></thankyou-view>
+            <thankyou-view  v-if="showThankYou" style="z-index: 20"  :style="{ backgroundImage: 'linear-gradient( rgba(0, 0, 0, 0.80), rgba(0, 0, 0, 0.80)), url(' +  imageView + ')' }" class="top-0 right-0 left-0 bottom-0 w-full h-screen flex items-start justify-center bg-cover"
+                :class="{'absolute': preview == true, 'fixed': preview == false}"
+            ></thankyou-view>
         </div>
     </div>
 </template>
@@ -94,6 +96,21 @@
                 if(this.formIsOpen == true) {
                     body.classList.add("overflow-hidden");
                 } else if(this.formIsOpen == false) {
+                    body.classList.add("overflow-auto");
+                }
+            },
+
+            showThankYou() {
+                /* We don't want to add overflow to body when it's in preview mode in adcampaign */
+                if(this.preview == true)
+                    return;
+
+                var body = document.body;
+                body.classList.remove("overflow-hidden");
+                body.classList.add("overflow-auto");
+                if(this.showThankYou == true) {
+                    body.classList.add("overflow-hidden");
+                } else if(this.showThankYou == false) {
                     body.classList.add("overflow-auto");
                 }
             }
