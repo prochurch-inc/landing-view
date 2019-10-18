@@ -18,7 +18,11 @@
             <div id="map"></div>
             <map-view></map-view>
             <footer-view ></footer-view>
-            <form-view  v-if="formIsOpen" style="background-color: rgba(0,0,0,.9);" class="absolute top-0 right-0 left-0 bottom-0 w-full h-screen flex items-center justify-center"></form-view>
+            <form-view
+                style="background-color: rgba(0,0,0,.9);z-index: 20" class="top-0 right-0 left-0 bottom-0 w-full h-screen flex items-center justify-center"
+                :class="{'absolute': preview == true, 'fixed': preview == false}"
+                v-if="formIsOpen"
+            ></form-view>
             <thankyou-view  v-if="showThankYou"  :style="{ backgroundImage: 'linear-gradient( rgba(0, 0, 0, 0.80), rgba(0, 0, 0, 0.80)), url(' +  imageView + ')' }" class="absolute top-0 right-0 left-0 bottom-0 w-full h-screen flex items-start justify-center bg-cover"></thankyou-view>
         </div>
     </div>
@@ -76,6 +80,23 @@
         },
         methods: {
 
+        },
+        watch: {
+
+            formIsOpen() {
+                /* We don't want to add overflow to body when it's in preview mode in adcampaign */
+                if(this.preview == true)
+                    return;
+
+                var body = document.body;
+                body.classList.remove("overflow-hidden");
+                body.classList.add("overflow-auto");
+                if(this.formIsOpen == true) {
+                    body.classList.add("overflow-hidden");
+                } else if(this.formIsOpen == false) {
+                    body.classList.add("overflow-auto");
+                }
+            }
         }
 
     }

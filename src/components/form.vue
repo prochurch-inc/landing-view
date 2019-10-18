@@ -91,6 +91,9 @@
             ...mapState('storeLanding/storeForm',[
                 'step', 'isOpen'
             ]),
+            ...mapState('storeLanding',[
+                'preview', 'preview'
+            ]),
             formNumber(){
                 return this.getActiveSections.length
             },
@@ -117,6 +120,11 @@
                 this.isOpenModel = false
             },
             done(){
+                if(this.preview) {
+                    swal("Note", "You are in preview mode, form can not be submitted.", "info")
+                    return;
+                }
+
                 this.submitLandingForm().then(response => {
                     swal({
                         title: "Sign-Up Form Submitted",
