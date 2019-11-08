@@ -61,6 +61,7 @@
             thankyouView
         },
         computed: {
+            ...mapState('storeLanding', ['team', 'user']),
             ...mapState('storeLanding',{
                 parent: 'parent',
                 preview: 'preview',

@@ -2,11 +2,11 @@
     <section class="footer-cta
             py-24 px-12 text-center bg-cover bg-center bg-black"
         :style="{background: 'linear-gradient(rgba(0, 0, 0, .6) 0%,  rgba(0, 0, 0, .6) 100%), url('+ backgroundImage + ')'}" v-if="ctaShowCta">
-        <h4 class="text-white text-xl  font-medium mb-2">{{ ctaHeading }}</h4>
-        <h5 class="text-white text-lg font-medium mb-6">{{ ctaSubHeading }}</h5>
+        <h4 class="text-white text-xl  font-medium mb-2">{{ parseTags(ctaHeading) }}</h4>
+        <h5 class="text-white text-lg font-medium mb-6">{{ parseTags(ctaSubHeading) }}</h5>
         <special-button
-            :main-text="ctaButtonText"
-            :sub-text="ctaButtonSubtext"
+            :main-text="parseTags(ctaButtonText)"
+            :sub-text="parseTags(ctaButtonSubtext)"
             :on-click="showForm"
         />
     </section>
@@ -14,11 +14,14 @@
 
 <script>
     import { mapState, mapMutations } from 'vuex';
-    import SpecialButton from './SpecialButton'
+    import SpecialButton from './SpecialButton';
+    import copymixin from './copymixin.js';
 
     export default {
+        mixins: [copymixin],
         components: { SpecialButton },
         computed: {
+            ...mapState('storeLanding', ['team', 'user']),
             backgroundImage(){
                 if(this.ctaImage){
                     if(this.ctaImage.includes('http')){
@@ -67,6 +70,13 @@
             showForm(){
                 if(this.preview == false)
                     this.setFormIsOpen(true);
+            },
+            parseTags(string) {
+                if (typeof string != 'string') {
+                    return '';
+                }
+
+                return this.replaceTags(string, this.user, this.team)
             }
         }
     }

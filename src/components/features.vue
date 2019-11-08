@@ -4,10 +4,10 @@
             <article class="feature" v-for="(item, key) in featuresHighlights" :key="key">
                 <div class="item">
                     <div class="text-area">
-                        <h2 :style="{color: styleMainColor}">{{item.heading}}</h2>
-                        <div class="paragraph" v-html="item.body"></div>
+                        <h2 :style="{color: styleMainColor}">{{parseTags(item.heading)}}</h2>
+                        <div class="paragraph" v-html="parseTags(item.body)"></div>
                     </div>
-                    <img :src="item.photo" :alt="item.heading">
+                    <img :src="item.photo" :alt="parseTags(item.heading)">
                 </div>
                 <div class="buttons text-center mb-12" v-if="featuresShowButtons">
                     <a href="#"
@@ -15,7 +15,7 @@
                         :style="{background: styleAccentColor}"
                         :class="'rounding-' + styleStyleId" @click.prevent="showForm">
                         <span class="ml-4">
-                            <p class="text-white">{{ ctaButtonText }}</p>
+                            <p class="text-white">{{ parseTags(ctaButtonText) }}</p>
                             <p class="text-white text-xs font-normal tracking-wide" v-if="featuresShowButtons">Join <span
                                     class="font-bold">24</span> who have also signed up!</p>
                         </span>
@@ -29,10 +29,14 @@
 
 <script>
     import hexRgb from 'hex-rgb';
+    import copymixin from './copymixin.js';
     import { mapState, mapMutations } from 'vuex';
 
     export default {
+        mixins: [copymixin],
         computed: {
+            ...mapState('storeLanding', ['team', 'user']),
+
             backgroundStyles(){
                 let color = hexRgb(this.featuresBgColor);
                 let color_background = `rgba(${color.red}, ${color.green}, ${color.blue}, .${this.featuresBgOpacity})`;
@@ -92,6 +96,13 @@
             showForm(){
                 if(this.preview == false)
                     this.setFormIsOpen(true);
+            },
+            parseTags(string) {
+                if (typeof string != 'string') {
+                    return '';
+                }
+
+                return this.replaceTags(string, this.user, this.team)
             }
         }
     }

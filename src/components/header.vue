@@ -4,27 +4,27 @@
             class="header flex flex-col items-center text-center py-24 w-full min-h-header bg-cover bg-center bg-bottom bg-no-repeat text-white bg-fixed"
             :class="[styleChurchName || styleLogo ? 'justify-start' : 'justify-center' ]" v-if="headerImage"
            :style="headerbackground" >
-            <h1 v-if="headerTitle">{{headerTitle}}</h1>
-            <h5 v-if="headerSubtitle">{{headerSubtitle}}</h5>
+            <h1 v-if="headerTitle">{{parseTags(headerTitle)}}</h1>
+            <h5 v-if="headerSubtitle">{{ parseTags(headerSubtitle) }}</h5>
             <special-button
-                :main-text="headerButtonTitle"
-                :sub-text="headerButtonSubtitle"
+                :main-text="parseTags(headerButtonTitle)"
+                :sub-text="parseTags(headerButtonSubtitle)"
                 :on-click="showForm"
             />
              <div v-if="headerShowCountdown">
-                <p class="text-sm mb-2" :style="{color: styleAccentColor}" v-text="headerCountdownTitle"></p>
-                <countdown-timer :color="styleAccentColor" :rounding="styleStyleId" :deadline="headerCountdownDate" :endingtime="headerCountdownTime" :day="headerCountdownDay" :type="headerCountdownType" :countdowntitle="headerCountdownTitle" ></countdown-timer>
+                <p class="text-sm mb-2" :style="{color: styleAccentColor}" v-text="parseTags(headerCountdownTitle)"></p>
+                <countdown-timer :color="styleAccentColor" :rounding="styleStyleId" :deadline="headerCountdownDate" :endingtime="headerCountdownTime" :day="headerCountdownDay" :type="headerCountdownType" :countdowntitle="parseTags(headerCountdownTitle)" ></countdown-timer>
             </div>
         </section>
         <section
             class="header flex flex-col items-center text-center py-8 w-full min-h-header bg-cover bg-center bg-bottom bg-no-repeat text-white bg-fixed"
             :class="[styleChurchName || styleLogo ? 'justify-start' : 'justify-center' ]" v-else
             style="background-image: url('/images/landing/header-background.jpg')">
-            <h1 v-if="headerTitle">{{headerTitle}}</h1>
-            <h5 v-if="headerSubtitle">{{headerSubtitle}}</h5>
+            <h1 v-if="headerTitle">{{ parseTags(headerTitle)}}</h1>
+            <h5 v-if="headerSubtitle">{{ parseTags(headerSubtitle) }}</h5>
             <special-button
-                :main-text="headerButtonTitle"
-                :sub-text="headerButtonSubtitle"
+                :main-text="parseTags(headerButtonTitle)"
+                :sub-text="parseTags(headerButtonSubtitle)"
                 :on-click="showForm"
             />
             <countdown-timer :deadline="headerCountdownDate" :rounding="styleStyleId" v-if="headerCountdownDate" :color="styleAccentColor"></countdown-timer>
@@ -37,9 +37,12 @@
     import hexRgb from 'hex-rgb';
     import { mapState, mapMutations } from 'vuex';
     import SpecialButton from './SpecialButton'
+    import copymixin from './copymixin.js';
 
     export default {
         components: { countdownTimer, SpecialButton },
+
+        mixins: [copymixin],
 
         computed: {
             headerbackground(){
@@ -48,6 +51,7 @@
                 let image = this.headerImage.includes('http') ? this.headerImage : `${this.parent}/storage/${this.headerImage}`;
                 return  `background: linear-gradient(${colorBackground} 0%, ${colorBackground} 100%), url(${image});`
             },
+            ...mapState('storeLanding', ['team', 'user']),
             ...mapState('storeLanding/storeStyles', {
                 styleShowLogo: 'showLogo',
                 styleChurchName: 'churchName',
@@ -109,8 +113,15 @@
             showForm() {
                 if(this.preview == false)
                     this.setFormIsOpen(true);
+            },
+            parseTags(string) {
+                if (typeof string != 'string') {
+                    return '';
+                }
+
+                return this.replaceTags(string, this.user, this.team)
             }
-        }
+        },
     }
 
 </script>
