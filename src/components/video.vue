@@ -20,6 +20,11 @@
                 vimeoId: null
             }
         },
+        watch: {
+            headerVideoUrl(newVal) {
+                this.getvimeoid()
+            }
+        },
         methods: {
             getvimeoid(){
                  if(this.headerVideoUrl.includes('vimeo')){
