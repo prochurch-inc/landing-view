@@ -2853,14 +2853,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'SpecialButton',
   props: {
-    onClick: {
-      type: Function,
-      "default": function _default() {}
-    },
     buttonLink: {
       type: String,
       "default": '#'
@@ -23248,12 +23246,7 @@ var render = function() {
           _vm.accentColor,
         color: _vm.textColor
       },
-      on: {
-        click: function($event) {
-          $event.preventDefault()
-          return _vm.onClick($event)
-        }
-      }
+      attrs: { target: "_blank", href: _vm.buttonLink, rel: "noopener" }
     },
     [
       _c("span", { staticClass: "ml-4" }, [
