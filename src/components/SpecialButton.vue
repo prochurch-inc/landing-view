@@ -2,9 +2,7 @@
     <a class="cta-button px-8 py-2 user-bg-color shadow inline-flex items-center justify-center cursor-pointer hover:bg-gray-400"
         :style="{background: 'linear-gradient(rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 14.2%, rgba(0, 0, 0, .30) 100%), ' + accentColor, 'color': textColor}"
         :class="'rounding-' + styleId"
-        target="_blank"
-        :href="buttonLink"
-        rel="noopener">
+        @click.prevent="onClick">
         <span class="ml-4">
             <p v-if="mainText" :style="{'color': textColor}">{{ mainText }}</p>
             <p class="text-xs font-normal tracking-wide" :style="{'color': textColor}" v-if="subText">{{ subText }}</p>
@@ -19,6 +17,10 @@ import { mapState, mapMutations, mapActions, mapGetters } from 'vuex';
 export default {
     name: 'SpecialButton',
     props: {
+        onClick: {
+            type: Function,
+            default: () => {}
+        },
         buttonLink: {
             type: String,
             default: '#',
