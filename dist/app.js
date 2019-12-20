@@ -4288,6 +4288,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -4295,7 +4296,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   components: {
     SpecialButton: _SpecialButton__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])('storeThankYou', ['heading', 'body', 'image', 'buttonText', 'buttonLink', 'imageChangeStatus', 'copyChangeStatus', 'buttonChangeStatus']))
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])('storeThankYou', ['heading', 'body', 'image', 'buttonText', 'buttonLink', 'imageChangeStatus', 'copyChangeStatus', 'buttonChangeStatus'])),
+  methods: {
+    openChurchSite: function openChurchSite() {
+      var win = window.open(this.buttonLink, '_blank');
+      win.focus();
+    }
+  }
 });
 
 /***/ }),
@@ -24869,7 +24876,11 @@ var render = function() {
         ),
         _vm._v(" "),
         _c("special-button", {
-          attrs: { "button-link": _vm.buttonLink, "main-text": _vm.buttonText }
+          attrs: {
+            "button-link": _vm.buttonLink,
+            "main-text": _vm.buttonText,
+            "on-click": _vm.openChurchSite
+          }
         })
       ],
       1

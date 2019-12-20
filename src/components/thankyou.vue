@@ -8,6 +8,7 @@
         <special-button
             :button-link="buttonLink"
             :main-text="buttonText"
+            :on-click="openChurchSite"
         />
         </div>
     </div>
@@ -29,6 +30,13 @@
                 'heading','body','image','buttonText','buttonLink','imageChangeStatus','copyChangeStatus','buttonChangeStatus',
             ]),
         },
+
+        methods: {
+            openChurchSite() {
+                let win = window.open(this.buttonLink, '_blank')
+                win.focus()
+            }
+        }  
     }
 </script>
 
