@@ -3277,34 +3277,54 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         this.setStep(value);
       }
     }
-  }, Object(vuex__WEBPACK_IMPORTED_MODULE_8__["mapGetters"])('storeManageForm', ['getActiveSections', 'getCurrentSectionIndex']), {}, Object(vuex__WEBPACK_IMPORTED_MODULE_8__["mapState"])('storeManageForm/storeSettings', {
+  }, Object(vuex__WEBPACK_IMPORTED_MODULE_8__["mapGetters"])('storeManageForm', ['getActiveSections', 'getCurrentSectionIndex']), {}, Object(vuex__WEBPACK_IMPORTED_MODULE_8__["mapGetters"])('storeLanding/storeForm', ['validateField']), {}, Object(vuex__WEBPACK_IMPORTED_MODULE_8__["mapState"])('storeManageForm', ['requiredFields', 'sections']), {}, Object(vuex__WEBPACK_IMPORTED_MODULE_8__["mapState"])('storeManageForm/storeSettings', {
     settingsTitle: 'title',
     settingsNext: 'next',
     settingsPrevious: 'previous',
     settingsStep: 'step'
   }), {}, Object(vuex__WEBPACK_IMPORTED_MODULE_8__["mapState"])('storeLanding/storeStyles', {
     styleMainColor: 'mainColor'
-  }), {}, Object(vuex__WEBPACK_IMPORTED_MODULE_8__["mapState"])('storeLanding/storeForm', ['step', 'isOpen']), {}, Object(vuex__WEBPACK_IMPORTED_MODULE_8__["mapState"])('storeLanding', ['preview', 'preview']), {}, Object(vuex__WEBPACK_IMPORTED_MODULE_8__["mapState"])('storeThankYou', ['showThankYou']), {
+  }), {}, Object(vuex__WEBPACK_IMPORTED_MODULE_8__["mapState"])('storeLanding/storeForm', ['step', 'isOpen', 'numberAttending', 'firstName', 'lastName', 'emailAddress', 'phone', 'service', 'notes']), {}, Object(vuex__WEBPACK_IMPORTED_MODULE_8__["mapState"])('storeLanding', ['preview', 'preview']), {}, Object(vuex__WEBPACK_IMPORTED_MODULE_8__["mapState"])('storeThankYou', ['showThankYou']), {
     formNumber: function formNumber() {
       return this.getActiveSections.length;
     },
     stepPercent: function stepPercent() {
       return (this.step + 1) / this.formNumber * 100;
+    },
+    currentFormStepName: function currentFormStepName() {
+      return this.getActiveSections[this.stepModel].name;
     }
   }),
   watch: {
     getCurrentSectionIndex: function getCurrentSectionIndex() {
-      if (this.getCurrentSectionIndex == -1) this.stepModel = 0;else if (this.stepModel != this.getCurrentSectionIndex) this.stepModel = this.getCurrentSectionIndex;
+      var activeSection = this.sections[this.getCurrentSectionIndex];
+      var index = this.getActiveSections.indexOf(activeSection);
+
+      if (index == -1) {
+        index = this.stepModel;
+      }
+
+      if (this.getCurrentSectionIndex == -1) {
+        index = 0;
+      }
+
+      this.stepModel = index;
     }
   },
   methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_8__["mapActions"])({
     submitLandingForm: 'storeLanding/storeForm/submitLandingForm'
-  }), {}, Object(vuex__WEBPACK_IMPORTED_MODULE_8__["mapMutations"])('storeLanding/storeForm', ['nextStep', 'previousStep', 'setIsOpen', 'setStep']), {}, Object(vuex__WEBPACK_IMPORTED_MODULE_8__["mapMutations"])('storeThankYou', ['setShowThankYou']), {
+  }), {}, Object(vuex__WEBPACK_IMPORTED_MODULE_8__["mapMutations"])('storeLanding/storeForm', ['nextStep', 'previousStep', 'setIsOpen', 'setStep', 'setShowErrors']), {}, Object(vuex__WEBPACK_IMPORTED_MODULE_8__["mapMutations"])('storeThankYou', ['setShowThankYou']), {
     hideform: function hideform() {
       this.isOpenModel = false;
     },
     done: function done() {
       var _this = this;
+
+      if (!this.validateForm()) {
+        this.setShowErrors(true);
+        swal('Form Error', 'Please correct the form errors and try again.', 'error');
+        return;
+      }
 
       if (this.preview) {
         swal("Note", "You are in preview mode, form can not be submitted.", "info");
@@ -3331,6 +3351,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     _previousStep: function _previousStep() {
       this.previousStep();
+    },
+    validateForm: function validateForm() {
+      var _this2 = this;
+
+      return this.getActiveSections.filter(function (section) {
+        return _this2.requiredFields.includes(section.name);
+      }).every(function (section) {
+        return !!_this2.validateField(section.name);
+      });
     }
   })
 });
@@ -3390,6 +3419,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   computed: _objectSpread({
@@ -3404,7 +3434,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     inputs: function inputs() {
       return this.getNumberInputs();
     }
-  }, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])('storeLanding/storeForm', ['numberAttending'])),
+  }, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])('storeLanding/storeForm', ['numberAttending', 'showErrors']), {}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('storeLanding/storeForm', ['validateField']), {}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('storeManageForm', ['isRequiredField']), {
+    showValidationError: function showValidationError() {
+      return this.showErrors && this.isRequiredField('Number') && !this.validateField('Number');
+    }
+  }),
   methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapMutations"])('storeLanding/storeForm', ['setNumberAttending', 'nextStep']), {}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('storeManageForm', ['getNumberInputs']))
 });
 
@@ -3438,6 +3472,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   computed: _objectSpread({
@@ -3452,7 +3487,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     inputs: function inputs() {
       return this.getEmailInputs();
     }
-  }, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])('storeLanding/storeForm', ['emailAddress'])),
+  }, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])('storeLanding/storeForm', ['emailAddress', 'showErrors']), {}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('storeLanding/storeForm', ['validateField']), {}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('storeManageForm', ['isRequiredField']), {
+    showValidationError: function showValidationError() {
+      return this.showErrors && this.isRequiredField('Email') && !this.validateField('Email');
+    }
+  }),
   mounted: function mounted() {
     document.getElementById('email').focus();
   },
@@ -3502,6 +3541,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   computed: _objectSpread({
@@ -3524,7 +3564,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     inputs: function inputs() {
       return this.getNameInputs();
     }
-  }, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])('storeLanding/storeForm', ['firstName', 'lastName'])),
+  }, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])('storeLanding/storeForm', ['firstName', 'lastName', 'showErrors']), {}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('storeLanding/storeForm', ['validateField']), {}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('storeManageForm', ['isRequiredField']), {
+    showValidationError: function showValidationError() {
+      return this.showErrors && this.isRequiredField('Name') && !this.validateField('Name');
+    }
+  }),
   mounted: function mounted() {
     document.getElementById('first_name').focus();
   },
@@ -3557,6 +3601,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
@@ -3574,7 +3619,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     inputs: function inputs() {
       return this.getNotesInputs();
     }
-  }, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])('storeLanding/storeForm', ['notes'])),
+  }, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])('storeLanding/storeForm', ['notes']), {}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('storeManageForm', ['isRequiredField']), {}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('storeLanding/storeForm', ['validateField']), {
+    showValidationError: function showValidationError() {
+      return this.showErrors && this.isRequiredField('Notes') && !this.validateField('Notes');
+    }
+  }),
   methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapMutations"])('storeLanding/storeForm', ['setNotes', 'nextStep']), {}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('storeManageForm', ['getNotesInputs']))
 });
 
@@ -3626,7 +3675,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     inputs: function inputs() {
       return this.getPhoneInputs();
     }
-  }, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])('storeLanding/storeForm', ['phone'])),
+  }, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])('storeLanding/storeForm', ['phone', 'showErrors']), {}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])('storeLanding/storeForm', ['validateField']), {}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])('storeManageForm', ['isRequiredField']), {
+    showValidationError: function showValidationError() {
+      return this.showErrors && this.isRequiredField('Phone') && !this.validateField('Phone');
+    }
+  }),
   mounted: function mounted() {
     //  Wait half a second before focusing on the 1 field so as not to inadvertantly advance to the second field.
     setTimeout(function () {
@@ -3665,6 +3718,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   computed: _objectSpread({
@@ -3682,7 +3736,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     services: function services() {
       return this.getServices();
     }
-  }, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])('storeLanding', ['team']), {}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])('storeLanding/storeForm', ['service'])),
+  }, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])('storeLanding', ['team']), {}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])('storeLanding/storeForm', ['service', 'showErrors']), {}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('storeLanding/storeForm', ['validateField']), {}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('storeManageForm', ['isRequiredField']), {
+    showValidationError: function showValidationError() {
+      return this.showErrors && this.isRequiredField('Times') && !this.validateField('Times');
+    }
+  }),
   mounted: function mounted() {},
   methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapMutations"])('storeLanding/storeForm', ['setService', 'nextStep']), {}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('storeLanding/storeForm', ['getServices']), {}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])('storeManageForm', ['getTimesInputs']), {
     selectService: function selectService(service) {
@@ -23552,7 +23610,7 @@ var render = function() {
                 [
                   _c(
                     "transition",
-                    { attrs: { name: "slide-fade" } },
+                    { attrs: { name: "slide-fade", appear: "" } },
                     [
                       item.name == "Number" && item.use
                         ? _c("form-attending")
@@ -23934,7 +23992,13 @@ var render = function() {
         _vm._v(" "),
         _vm._m(6)
       ]
-    )
+    ),
+    _vm._v(" "),
+    _vm.showValidationError
+      ? _c("span", { staticClass: "text-xs text-red-500 mt-1 font-heading" }, [
+          _vm._v("This information is required")
+        ])
+      : _vm._e()
   ])
 }
 var staticRenderFns = [
@@ -24048,7 +24112,15 @@ var render = function() {
               _vm.emailAddressModel = $event.target.value
             }
           }
-        })
+        }),
+        _vm._v(" "),
+        _vm.showValidationError
+          ? _c(
+              "span",
+              { staticClass: "text-xs text-red-500 mt-1 font-heading" },
+              [_vm._v("This information is required")]
+            )
+          : _vm._e()
       ])
     ])
   ])
@@ -24138,7 +24210,13 @@ var render = function() {
           }
         })
       ])
-    ])
+    ]),
+    _vm._v(" "),
+    _vm.showValidationError
+      ? _c("span", { staticClass: "text-xs text-red-500 mt-1 font-heading" }, [
+          _vm._v("This information is required")
+        ])
+      : _vm._e()
   ])
 }
 var staticRenderFns = []
@@ -24168,7 +24246,7 @@ var render = function() {
       _vm._v(_vm._s(_vm.inputs[0].title))
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "inputgroup" }, [
+    _c("div", { staticClass: "inputgroup block" }, [
       _c("textarea", {
         directives: [
           {
@@ -24178,7 +24256,7 @@ var render = function() {
             expression: "notesModel"
           }
         ],
-        staticClass: "form-textarea w-full rounded-sm",
+        staticClass: "form-textarea block w-full rounded-sm",
         attrs: { name: "notes", rows: "5", id: "notes" },
         domProps: { value: _vm.notesModel },
         on: {
@@ -24189,7 +24267,15 @@ var render = function() {
             _vm.notesModel = $event.target.value
           }
         }
-      })
+      }),
+      _vm._v(" "),
+      _vm.showValidationError
+        ? _c(
+            "span",
+            { staticClass: "text-xs text-red-500 mt-1 font-heading" },
+            [_vm._v("This information is required")]
+          )
+        : _vm._e()
     ])
   ])
 }
@@ -24234,7 +24320,15 @@ var render = function() {
             },
             expression: "phoneModel"
           }
-        })
+        }),
+        _vm._v(" "),
+        _vm.showValidationError
+          ? _c(
+              "span",
+              { staticClass: "text-xs text-red-500 mt-1 font-heading" },
+              [_vm._v("This information is required")]
+            )
+          : _vm._e()
       ],
       1
     )
@@ -24297,7 +24391,15 @@ var render = function() {
             ]
           )
         ])
-      })
+      }),
+      _vm._v(" "),
+      _vm.showValidationError
+        ? _c(
+            "span",
+            { staticClass: "text-xs text-red-500 mt-1 font-heading" },
+            [_vm._v("This information is required")]
+          )
+        : _vm._e()
     ],
     2
   )
