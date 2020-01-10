@@ -5,6 +5,7 @@
 
             <the-mask :mask="'(###) ###-####'" v-model="phoneModel" class="py-3 px-6 border text-center rounded-sm"/>
         </div>
+        <span class="text-xs text-red-500 mt-1 font-heading" v-if="showValidationError">This information is required</span>
     </div>
 </template>
 
