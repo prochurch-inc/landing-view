@@ -4,7 +4,7 @@
         <div class="max-w-xl mx-auto w-full z-30" >
             <h1 class="text-white text-center font-bold text-4xl mb-6">{{ settingsTitle }}</h1>
             <div class="box w-full p-8 bg-white" v-for="(item, index) in getActiveSections" :key="index" v-if="step == index">
-                <transition name="slide-fade">
+                <transition name="slide-fade" appear>
                 <form-attending v-if="item.name == 'Number' && item.use"></form-attending>
                 </transition>
                  <transition name="slide-fade" appear>
@@ -77,7 +77,13 @@
                 }
             },
             ...mapGetters('storeManageForm', [
-                'getActiveSections', 'getCurrentSectionIndex',
+                'getActiveSections', 'getCurrentSectionIndex'
+            ]),
+            ...mapGetters('storeLanding/storeForm', [
+                'validateField'
+            ]),
+            ...mapState('storeManageForm', [
+                'requiredFields', 'sections'
             ]),
             ...mapState('storeManageForm/storeSettings',{
                 settingsTitle: 'title',
@@ -89,7 +95,7 @@
                 styleMainColor: 'mainColor'
             }),
             ...mapState('storeLanding/storeForm',[
-                'step', 'isOpen'
+                'step', 'isOpen', 'numberAttending', 'firstName', 'lastName', 'emailAddress', 'phone', 'service', 'notes'
             ]),
             ...mapState('storeLanding',[
                 'preview', 'preview'
@@ -103,13 +109,24 @@
             stepPercent(){
                 return ((this.step + 1)/this.formNumber)*100
             },
+            currentFormStepName() {
+                return this.getActiveSections[this.stepModel].name
+            }
         },
         watch: {
             getCurrentSectionIndex() {
-                if(this.getCurrentSectionIndex == -1)
-                    this.stepModel = 0
-                else if(this.stepModel != this.getCurrentSectionIndex)
-                    this.stepModel = this.getCurrentSectionIndex
+                let activeSection = this.sections[this.getCurrentSectionIndex]
+                let index = this.getActiveSections.indexOf(activeSection)
+
+                if (index == -1) {
+                    index = this.stepModel
+                }
+
+                if(this.getCurrentSectionIndex == -1) {
+                    index = 0
+                }
+
+                this.stepModel = index
             }
         },
         methods: {
@@ -117,7 +134,7 @@
                 submitLandingForm: 'storeLanding/storeForm/submitLandingForm'
             }),
             ...mapMutations('storeLanding/storeForm', [
-                'nextStep', 'previousStep', 'setIsOpen', 'setStep'
+                'nextStep', 'previousStep', 'setIsOpen', 'setStep', 'setShowErrors'
             ]),
             ...mapMutations('storeThankYou', [
                 'setShowThankYou'
@@ -126,6 +143,12 @@
                 this.isOpenModel = false
             },
             done(){
+                if(! this.validateForm()) {
+                    this.setShowErrors(true)
+                    swal('Form Error', 'Please correct the form errors and try again.', 'error')
+                    return
+                }
+
                 if(this.preview) {
                     swal("Note", "You are in preview mode, form can not be submitted.", "info")
                     return;
@@ -150,7 +173,15 @@
             },
             _previousStep(){
                 this.previousStep()
-            }
+            },
+
+            validateForm() {
+                return this.getActiveSections
+                    .filter(section => this.requiredFields.includes(section.name))
+                    .every(section => {
+                        return !! this.validateField(section.name)
+                    })
+            },
         }
     }
 </script>
