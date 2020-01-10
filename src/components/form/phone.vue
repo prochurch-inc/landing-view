@@ -3,7 +3,6 @@
         <h2 class="text-2xl mb-6 text-center">{{inputs[0].title}}</h2>
         <div class="flex items-center justify-center my-6">
             <the-mask :mask="'(###) ###-####'" v-model="phoneModel" class="py-3 px-6 border text-center rounded-sm"/>
-            <span class="text-xs text-red-500 mt-1 font-heading" v-if="showValidationError">This information is required</span>
         </div>
         <span class="text-xs text-red-500 mt-1 font-heading" v-if="showValidationError">This information is required</span>
     </div>
