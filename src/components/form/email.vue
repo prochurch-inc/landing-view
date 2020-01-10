@@ -5,6 +5,7 @@
            <div class="inputgroup w-full px-12">
                <label for="email">{{inputs[1].title}}</label>
                <input type="email" id="email" v-model="emailAddressModel" class="w-full" @blur="done">
+                <span class="text-xs text-red-500 mt-1 font-heading" v-if="showValidationError">This information is required</span>
            </div>
        </div>
     </div>
@@ -27,8 +28,17 @@
                 return this.getEmailInputs()
             },
             ...mapState('storeLanding/storeForm', [
-                'emailAddress',
+                'emailAddress', 'showErrors'
             ]),
+            ...mapGetters('storeLanding/storeForm',[
+                'validateField'
+            ]),
+            ...mapGetters('storeManageForm',[
+                'isRequiredField'
+            ]),
+            showValidationError() {
+                return this.showErrors && this.isRequiredField('Email') && ! this.validateField('Email')
+            },
         },
         mounted(){
             document.getElementById('email').focus();
@@ -38,7 +48,7 @@
                 'setEmailAddress', 'nextStep'
             ]),
             ...mapGetters('storeManageForm', [
-                'getEmailInputs',
+                'getEmailInputs'
             ]),
             done(){
                 // Check to see if the email is an actual email using the regex here before firing done.

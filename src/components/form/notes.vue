@@ -1,8 +1,9 @@
 <template>
     <div>
         <h2 class="text-2xl mb-6 text-center">{{inputs[0].title}}</h2>
-        <div class="inputgroup">
-           <textarea name="notes" class="form-textarea w-full rounded-sm" rows="5" id="notes" v-model="notesModel"></textarea>
+        <div class="inputgroup block">
+           <textarea name="notes" class="form-textarea block w-full rounded-sm" rows="5" id="notes" v-model="notesModel"></textarea>
+           <span class="text-xs text-red-500 mt-1 font-heading" v-if="showValidationError">This information is required</span>
         </div>
     </div>
 </template>
@@ -30,6 +31,15 @@
             ...mapState('storeLanding/storeForm', [
                 'notes',
             ]),
+            ...mapGetters('storeManageForm',[
+                'isRequiredField'
+            ]),
+            ...mapGetters('storeLanding/storeForm',[
+                'validateField'
+            ]),
+            showValidationError() {
+                return this.showErrors && this.isRequiredField('Notes') && ! this.validateField('Notes')
+            },
         },
 
         methods: {
@@ -37,7 +47,7 @@
                 'setNotes', 'nextStep'
             ]),
             ...mapGetters('storeManageForm', [
-                'getNotesInputs',
+                'getNotesInputs'
             ]),
         }
     }

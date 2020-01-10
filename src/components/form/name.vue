@@ -12,6 +12,7 @@
                <input type="text" id="last_name" v-model="lastNameModel" style="display:block;">
            </div>
        </div>
+        <span class="text-xs text-red-500 mt-1 font-heading" v-if="showValidationError">This information is required</span>
     </div>
 </template>
 
@@ -43,7 +44,17 @@
             ...mapState('storeLanding/storeForm', [
                 'firstName',
                 'lastName',
+                'showErrors'
             ]),
+            ...mapGetters('storeLanding/storeForm',[
+                'validateField'
+            ]),
+            ...mapGetters('storeManageForm',[
+                'isRequiredField'
+            ]),
+            showValidationError() {
+                return this.showErrors && this.isRequiredField('Name') && ! this.validateField('Name')
+            },
         },
         mounted(){
             document.getElementById('first_name').focus();
@@ -53,7 +64,7 @@
                 'setFirstName', 'setLastName', 'nextStep'
             ]),
             ...mapGetters('storeManageForm', [
-                'getNameInputs',
+                'getNameInputs'
             ]),
             // done(){
             //     if(this.firstNameModel && this.lastNameModel){

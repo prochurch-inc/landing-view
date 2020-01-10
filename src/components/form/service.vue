@@ -6,6 +6,7 @@
                 <i class='uil mr-4' :class="{'uil-check-circle': service == serviceModel, 'text-blue-500': service == serviceModel, 'uil-circle': service != serviceModel, 'text-gray-400': service != serviceModel }"></i> {{service}}
             </p>
        </div>
+        <span class="text-xs text-red-500 mt-1 font-heading" v-if="showValidationError">This information is required</span>
     </div>
 </template>
 
@@ -29,11 +30,20 @@
                 return this.getServices()
             },
             ...mapState('storeLanding', [
-                'team',
+                'team'
             ]),
             ...mapState('storeLanding/storeForm', [
-                'service',
+                'service', 'showErrors'
             ]),
+            ...mapGetters('storeLanding/storeForm', [
+                'validateField'
+            ]),
+            ...mapGetters('storeManageForm',[
+                'isRequiredField'
+            ]),
+            showValidationError() {
+                return this.showErrors && this.isRequiredField('Times') && ! this.validateField('Times')
+            },
         },
         mounted(){
         },

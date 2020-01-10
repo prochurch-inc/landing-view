@@ -32,6 +32,7 @@
                 <span>7+</span>
             </label>
         </div>
+        <span class="text-xs text-red-500 mt-1 font-heading" v-if="showValidationError">This information is required</span>
     </div>
 </template>
 
@@ -52,8 +53,17 @@
                 return this.getNumberInputs()
             },
             ...mapState('storeLanding/storeForm', [
-                'numberAttending',
+                'numberAttending', 'showErrors'
             ]),
+            ...mapGetters('storeLanding/storeForm',[
+                'validateField'
+            ]),
+            ...mapGetters('storeManageForm',[
+                'isRequiredField'
+            ]),
+            showValidationError() {
+                return this.showErrors && this.isRequiredField('Number') && ! this.validateField('Number')
+            },
         },
         methods: {
             ...mapMutations('storeLanding/storeForm',[
