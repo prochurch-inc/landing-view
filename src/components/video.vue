@@ -1,9 +1,9 @@
 <template>
     <section class="video " :class="'video-rounding-' + styleStyleId" v-if="headerVideoUrl && headerShowVideo">
-        <iframe width="560" height="315" :src="'https://www.youtube.com/embed/' + videoID" frameborder="0"
+        <iframe class="videoFrame" :src="'https://www.youtube.com/embed/' + videoID" frameborder="0"
             allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen
             v-if="youtube"></iframe>
-        <iframe :src="vimeourl" width="560" height="315" frameborder="0"
+        <iframe :src="vimeourl" class="videoFrame"" frameborder="0"
             allow="autoplay; fullscreen" allowfullscreen v-if="vimeo && vimeoId"></iframe>
     </section>
 </template>
