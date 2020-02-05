@@ -98,7 +98,7 @@
                 'step', 'isOpen', 'numberAttending', 'firstName', 'lastName', 'emailAddress', 'phone', 'service', 'notes'
             ]),
             ...mapState('storeLanding',[
-                'preview', 'preview'
+                'preview', 'team'
             ]),
             ...mapState('storeThankYou',[
                 'showThankYou',
@@ -158,12 +158,18 @@
                     // Show thankyou modal
                     this.hideform()
                     this.setShowThankYou(true)
+
+                    if (! this.preview && window.fbq && this.team.fb_pixel_id) {
+                        window.fbq('track', 'CompleteRegistration');
+                    }
                 }).catch(error => {
-                    swal({
-                        title: "There was an error...",
-                        icon: "error",
-                        text: error.response.data.message,
-                    })
+                    if (error.response) {
+                        swal({
+                            title: "There was an error...",
+                            icon: "error",
+                            text: error.response.data.message,
+                        })
+                    }
                 })
             },
             _nextStep(){

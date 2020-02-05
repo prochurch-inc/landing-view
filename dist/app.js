@@ -3284,7 +3284,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     settingsStep: 'step'
   }), {}, Object(vuex__WEBPACK_IMPORTED_MODULE_8__["mapState"])('storeLanding/storeStyles', {
     styleMainColor: 'mainColor'
-  }), {}, Object(vuex__WEBPACK_IMPORTED_MODULE_8__["mapState"])('storeLanding/storeForm', ['step', 'isOpen', 'numberAttending', 'firstName', 'lastName', 'emailAddress', 'phone', 'service', 'notes']), {}, Object(vuex__WEBPACK_IMPORTED_MODULE_8__["mapState"])('storeLanding', ['preview', 'preview']), {}, Object(vuex__WEBPACK_IMPORTED_MODULE_8__["mapState"])('storeThankYou', ['showThankYou']), {
+  }), {}, Object(vuex__WEBPACK_IMPORTED_MODULE_8__["mapState"])('storeLanding/storeForm', ['step', 'isOpen', 'numberAttending', 'firstName', 'lastName', 'emailAddress', 'phone', 'service', 'notes']), {}, Object(vuex__WEBPACK_IMPORTED_MODULE_8__["mapState"])('storeLanding', ['preview', 'team']), {}, Object(vuex__WEBPACK_IMPORTED_MODULE_8__["mapState"])('storeThankYou', ['showThankYou']), {
     formNumber: function formNumber() {
       return this.getActiveSections.length;
     },
@@ -3336,12 +3336,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         _this.hideform();
 
         _this.setShowThankYou(true);
+
+        if (!_this.preview && window.fbq && _this.team.fb_pixel_id) {
+          window.fbq('track', 'CompleteRegistration');
+        }
       })["catch"](function (error) {
-        swal({
-          title: "There was an error...",
-          icon: "error",
-          text: error.response.data.message
-        });
+        if (error.response) {
+          swal({
+            title: "There was an error...",
+            icon: "error",
+            text: error.response.data.message
+          });
+        }
       });
     },
     _nextStep: function _nextStep() {
@@ -25016,9 +25022,8 @@ var render = function() {
         [
           _vm.youtube
             ? _c("iframe", {
+                staticClass: "videoFrame",
                 attrs: {
-                  width: "560",
-                  height: "315",
                   src: "https://www.youtube.com/embed/" + _vm.videoID,
                   frameborder: "0",
                   allow:
@@ -25030,10 +25035,9 @@ var render = function() {
           _vm._v(" "),
           _vm.vimeo && _vm.vimeoId
             ? _c("iframe", {
+                staticClass: "videoFrame",
                 attrs: {
                   src: _vm.vimeourl,
-                  width: "560",
-                  height: "315",
                   frameborder: "0",
                   allow: "autoplay; fullscreen",
                   allowfullscreen: ""
